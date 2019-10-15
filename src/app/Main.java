@@ -17,7 +17,6 @@ public class Main {
 		int menu;
 		int acctNum;
 		int newAccountNo = 0;
-		int accountNumber;
 		
 		do {
 			System.out.println("  1. Login with account number \n  2. Create an account \n  3. Quit");
@@ -29,7 +28,7 @@ public class Main {
 					System.out.println("Please enter your account number: ");
 					acctNum = scan.nextInt();
 					if(acctNum != 0) { //TODO placeholder
-						System.out.println("Welcome back. \nCurrent balance: $" + bank.checkBalance(acctNum) +".00 \nWhat action would you like to perform?");
+						System.out.println("Welcome back. \nCurrent balance: $" + bank.checkBalance(acctNum) + ".00 \nWhat action would you like to perform?");
 						System.out.println("  1. Make a deposit \n  2. Make a withdrawal \n  3. Close account");
 						int menu2 = scan.nextInt();
 						switch(menu2) {
@@ -45,6 +44,12 @@ public class Main {
 								bank.withdraw(acctNum, withdrawN);
 								System.out.println("Withdrawn.\nCurrent balance: $" + bank.checkBalance(acctNum) + ".00");
 								break;
+							case 3:
+								System.out.println("Are you sure you would like to close your account? This action cannot be undone. Y/N:");
+								String ans = scan.nextLine();
+								if(ans.equals("Y")) {
+									bank.closeAccount(acctNum);
+								}
 						}
 					}else {
 						System.out.println("Error: Unknown account");
