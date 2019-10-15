@@ -20,7 +20,7 @@ public class Main {
 		int accountNumber;
 		
 		do {
-			System.out.println("1. Login with account number \n2. Create an account");
+			System.out.println("1. Login with account number \n2. Create an account ");
 			menu = scan.nextInt();
 			scan.nextLine();
 			
