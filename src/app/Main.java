@@ -50,6 +50,7 @@ public class Main {
 								if(ans.equals("Y")) {
 									bank.closeAccount(acctNum);
 								}
+								break;
 						}
 					}else {
 						System.out.println("Error: Unknown account");
