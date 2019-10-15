@@ -27,6 +27,9 @@ public class Bank {
 		log("Added account " + newAccount);
 		return newAccount.accountNumber;
 	}
+	public int getAcctNum() {
+		return accountCounter - 1;
+	}
 
 	public boolean closeAccount(int accountNumber) {
 		Account account = findAccount(accountNumber);
