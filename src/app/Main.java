@@ -27,8 +27,9 @@ public class Main {
 				case 1:
 					System.out.println("Please enter your account number: ");
 					acctNum = scan.nextInt();
-					if(acctNum != 0) { //TODO placeholder
-						System.out.println("Welcome back. \nCurrent balance: $" + bank.checkBalance(acctNum) + ".00 \nWhat action would you like to perform?");
+					if(acctNum != 0) { //TODO make this an actual check for existing bank numbers
+						System.out.println("Welcome back, " + bank.getAcctName(acctNum) +"\nCurrent balance: $" + bank.checkBalance(acctNum) 
+							+ ".00 \nWhat action would you like to perform?");
 						System.out.println("  1. Make a deposit \n  2. Make a withdrawal \n  3. Close account");
 						int menu2 = scan.nextInt();
 						switch(menu2) {
@@ -45,15 +46,20 @@ public class Main {
 								System.out.println("Withdrawn.\nCurrent balance: $" + bank.checkBalance(acctNum) + ".00");
 								break;
 							case 3:
-								System.out.println("Are you sure you would like to close your account? This action cannot be undone. Y/N:");
+								System.out.println("Are you sure you would like to close your account? This action cannot be undone."
+										+ " Y/N:");
 								String ans = scan.nextLine();
 								if(ans.equals("Y")) {
 									bank.closeAccount(acctNum);
+								}else {
+									System.out.println("Cancelled action");
 								}
 								break;
+							default:
+								System.out.println(errors(1));
 						}
 					}else {
-						System.out.println("Error: Unknown account");
+						System.out.println(errors(2));
 					}
 					break;
 				case 2:
@@ -64,6 +70,9 @@ public class Main {
 					break;
 				case 3:
 					System.out.println("Goodbye.");
+					break;
+				default:
+					System.out.println(errors(1));
 			}
 			
 		}while(menu < 3);
@@ -81,5 +90,17 @@ public class Main {
 //		bank.checkBalance(howardAccountNo);
 		
 		scan.close();
+	}
+	public static String errors(int error) {
+		int e = error;
+		String errorR = "Error: ";
+		if(e == 1) {
+			errorR += "unknown action!";
+		}else if(e == 2) {
+			errorR += "unknown account!";
+		}else {
+			errorR += "unknown error!";
+		}
+		return errorR;
 	}
 }
