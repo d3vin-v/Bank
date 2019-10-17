@@ -17,6 +17,7 @@ public class Main {
 		int menu;
 		int acctNum;
 		int newAccountNo = 0;
+		//Bank.loadAccounts("file.txt");
 		
 		do {
 			System.out.println("  1. Login with account number \n  2. Create an account \n  3. Quit");

@@ -14,7 +14,6 @@ public class Bank {
 	private static int accountCounter = 1;
 	private String name;
 	private ArrayList<Account> accounts;
-	private String users;
 
 	public Bank() {
 		this("Bank Name");
@@ -31,7 +30,7 @@ public class Bank {
 		accounts.add(newAccount);
 
 		log("Added account " + newAccount);
-		saveAccounts(users);
+		saveAccounts("file.txt");
 		return newAccount.accountNumber;
 	}
 	public int getAcctNum() {
@@ -39,6 +38,7 @@ public class Bank {
 	}
 	
 	public String getAcctName(int acctNum) {
+		loadAccounts("file.txt");
 		Account account = findAccount(acctNum);
 		String[] split = (account + "").split("::");
 		String name = split[1];
@@ -96,7 +96,7 @@ public class Bank {
 		try {
 			FileWriter fw = new FileWriter(fileName);
 			for (Account a : accounts) {// enhanced for loop / for each
-				String message = a.toString();
+				String message = a.toString() + "\n";
 				fw.append(message);
 			}
 			fw.close();
@@ -160,6 +160,7 @@ public class Bank {
 			this.accountNumber = an;
 			this.name = name;
 			this.balance = bal;
+			accountNumber = accountCounter++;
 		}
 
 		public String toString() {
