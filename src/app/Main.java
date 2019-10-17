@@ -29,9 +29,10 @@ public class Main {
 					acctNum = scan.nextInt();
 					if(acctNum != 0) { //TODO make this an actual check for existing bank numbers
 						System.out.println("Welcome back, " + bank.getAcctName(acctNum) +"\nCurrent balance: $" + bank.checkBalance(acctNum) 
-							+ ".00 \nWhat action would you like to perform?");
+							+ ".00 \n\nWhat action would you like to perform?");
 						System.out.println("  1. Make a deposit \n  2. Make a withdrawal \n  3. Close account");
 						int menu2 = scan.nextInt();
+						scan.nextLine();
 						switch(menu2) {
 							case 1:
 								System.out.println("How much would you like to deposit?");
