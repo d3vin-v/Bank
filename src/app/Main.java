@@ -71,6 +71,7 @@ public class Main {
 					System.out.println("Your account number is: " + bank.getAcctNum(acctName));
 					break;
 				case 3:
+					Bank.saveAccounts("file.txt");
 					System.out.println("Goodbye.");
 					break;
 				default:

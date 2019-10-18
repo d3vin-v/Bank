@@ -13,7 +13,7 @@ public class Bank {
 
 	private static int accountCounter = 1;
 	private String name;
-	private ArrayList<Account> accounts;
+	private static ArrayList<Account> accounts;
 
 	public Bank() {
 		this("Bank Name");
@@ -30,7 +30,6 @@ public class Bank {
 		accounts.add(newAccount);
 
 		log("Added account " + newAccount);
-		saveAccounts("file.txt");
 		return newAccount.accountNumber;
 	}
 	
@@ -58,7 +57,6 @@ public class Bank {
 		}
 		accounts.remove(account);
 		log("Successfully closed " + account);
-		saveAccounts("file.txt");
 		return true;
 	}
 
@@ -100,7 +98,7 @@ public class Bank {
 		return account.balance;
 	}
 
-	public void saveAccounts(String fileName) {
+	public static void saveAccounts(String fileName) {
 		try {
 			FileWriter fw = new FileWriter(fileName);
 			for (Account a : accounts) {// enhanced for loop / for each
@@ -111,7 +109,7 @@ public class Bank {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		log("Accounts Saved");
+		System.out.println("Accounts Saved");
 	}
 	
 	public void loadAccounts(String filename) {
@@ -130,15 +128,15 @@ public class Bank {
 				accounts.add(a);
 			}
 			fileScanner.close();
-		} catch (FileNotFoundException e) {
+		}catch(FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		log("Loaded file " + filename);
 	}
 
 	private Account findAccount(int accountNumber) {
-		for (int i = accounts.size() - 1; i >= 0; i--) {
-			if (accounts.get(i).accountNumber == accountNumber)
+		for(int i = accounts.size() - 1; i >= 0; i--) {
+			if(accounts.get(i).accountNumber == accountNumber)
 				return accounts.get(i);
 		}
 		return null;
@@ -154,7 +152,7 @@ public class Bank {
 	}
 
 	private void log(String message) {
-		if (LOG)
+		if(LOG)
 			System.out.println(name + " ::: " + message + ".");
 	}
 
