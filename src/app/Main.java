@@ -68,7 +68,7 @@ public class Main {
 					System.out.println("Please enter your name: ");
 					String acctName = scan.nextLine();
 					newAccountNo = bank.createAccount(acctName);
-					System.out.println("Your account number is: " + bank.getAcctNum());
+					System.out.println("Your account number is: " + bank.getAcctNum(acctName));
 					break;
 				case 3:
 					System.out.println("Goodbye.");

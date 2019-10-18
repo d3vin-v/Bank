@@ -33,8 +33,13 @@ public class Bank {
 		saveAccounts("file.txt");
 		return newAccount.accountNumber;
 	}
-	public int getAcctNum() {
-		return accountCounter - 1;
+	
+	public int getAcctNum(String acctName) {
+		loadAccounts("file.txt");
+		Account account = findAccountNum(acctName);
+		String[] split = (account + "").split("::");
+		int num = Integer.parseInt(split[0].substring(1));
+		return num;
 	}
 	
 	public String getAcctName(int acctNum) {
@@ -53,6 +58,7 @@ public class Bank {
 		}
 		accounts.remove(account);
 		log("Successfully closed " + account);
+		saveAccounts("file.txt");
 		return true;
 	}
 
@@ -64,6 +70,7 @@ public class Bank {
 		}
 		account.balance += amount;
 		log("Successfully deposited $" + amount + " to " + account);
+		saveAccounts("file.txt");
 		return true;
 	}
 
@@ -79,6 +86,7 @@ public class Bank {
 		}
 		account.balance -= amount;
 		log("Successfully withdrew $" + amount + " from " + account);
+		saveAccounts("file.txt");
 		return true;
 	}
 
@@ -132,6 +140,15 @@ public class Bank {
 		for (int i = accounts.size() - 1; i >= 0; i--) {
 			if (accounts.get(i).accountNumber == accountNumber)
 				return accounts.get(i);
+		}
+		return null;
+	}
+	
+	private Account findAccountNum(String acctName) {
+		for(int i = accounts.size() - 1; i>= 0; i--) {
+			if((accounts.get(i).name).equals(acctName)) {
+				return accounts.get(i);
+			}
 		}
 		return null;
 	}
